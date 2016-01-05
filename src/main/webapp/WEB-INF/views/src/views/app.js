@@ -13,6 +13,14 @@ define(function () {
 
         $stateProvider
 
+            .state('dashboard', {
+                url: '/dashboard',
+                templateUrl: 'views/dashboard.html',
+                controller: ["$scope", function ($scope) {
+                    console.log("dashboard")
+                }]
+            })
+
             .state('blank', {
                 url: '/blank',
                 templateUrl: 'views/blank.html',
