@@ -2,7 +2,6 @@
 <%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <html>
 <body>
-55555
 <shiro:guest>
     欢迎游客访问，<a href="${pageContext.request.contextPath}/oauth2-login">点击登录</a><br/>
 </shiro:guest>

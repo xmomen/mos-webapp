@@ -1,0 +1,43 @@
+
+<!-- User info -->
+<div class="login-info">
+    <span> <!-- User image size is adjusted inside CSS, it should stay as is -->
+
+        <a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
+            <img src="img/avatars/sunny.png" alt="me" class="online" />
+            <span data-localize="john.doe">
+                john.doe
+            </span>
+            <i class="fa fa-angle-down"></i>
+        </a>
+
+    </span>
+</div>
+<!-- end user info -->
+
+<!-- NAVIGATION : This navigation is also responsive
+
+To make this navigation dynamic please make sure to link the node
+(the reference to the nav > ul) after page load. Or the navigation
+will not initialize.
+-->
+
+<navigation xmlns:nav="http://www.w3.org/2001/XMLSchema">
+    <nav:item data-view="/dashboard" data-icon="fa fa-lg fa-fw fa-home" title="控制板" />
+    <nav:group data-icon="fa fa-lg fa-fw fa-inbox" title="消息中心" >
+        <nav:group title="站内消息">
+            <nav:item data-view="messageBox" title="全部消息"><span class="badge pull-right inbox-badge">14</span></nav:item>
+            <nav:item data-view="/messageBox/unread" title="未读消息"><span class="badge pull-right inbox-badge">14</span></nav:item>
+            <nav:item data-view="/messageBox/read" title="已读消息"/>
+        </nav:group>
+        <nav:item data-view="/subscribeMsg" title="消息订阅" />
+    </nav:group>
+    <nav:group data-icon="fa fa-lg fa-fw fa-bar-chart-o" title="任务中心">
+        <nav:item data-view="/graphs/flot" title="Flot Chart" />
+        <nav:item data-view="/graphs/morris" title="Morris Charts" />
+        <nav:item data-view="/graphs/inline-charts" title="Inline Charts" />
+        <nav:item data-view="/graphs/dygraphs" title="Dygraphs"><span class="badge pull-right inbox-badge bg-color-yellow">new</span></nav:item>
+    </nav:group>
+    <nav:item data-view="blank" data-icon="fa fa-lg fa-fw fa-file-text" title="空白页"><span class="badge pull-right inbox-badge">14</span></nav:item>
+</navigation>
+<span class="minifyme" data-action="minifyMenu"> <i class="fa fa-arrow-circle-left hit"></i> </span>
