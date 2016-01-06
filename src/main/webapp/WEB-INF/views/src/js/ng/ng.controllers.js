@@ -47,34 +47,3 @@ angular.module("app.controllers", []).factory("settings", ["$rootScope", functio
     };
     b.setLang(b.currentLang)
 }]);
-angular.module("app.demoControllers", []).controller("WidgetDemoCtrl", ["$scope", "$sce", function (b, a) {
-    b.title = "SmartUI Widget";
-    b.icon = "fa fa-user";
-    b.toolbars = [a.trustAsHtml('<div class="label label-success">				<i class="fa fa-arrow-up"></i> 2.35%			</div>'), a.trustAsHtml('<div class="btn-group" data-toggle="buttons">		        <label class="btn btn-default btn-xs active">		          <input type="radio" name="style-a1" id="style-a1"> <i class="fa fa-play"></i>		        </label>		        <label class="btn btn-default btn-xs">		          <input type="radio" name="style-a2" id="style-a2"> <i class="fa fa-pause"></i>		        </label>		        <label class="btn btn-default btn-xs">		          <input type="radio" name="style-a2" id="style-a3"> <i class="fa fa-stop"></i>		        </label>		    </div>')];
-    b.content = a.trustAsHtml("						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
-}]).controller("ActivityDemoCtrl", ["$scope", function (a) {
-    var b = this;
-    b.getDate = function () {
-        return new Date().toUTCString()
-    };
-    a.refreshCallback = function (d, c) {
-        console.log(d);
-        setTimeout(function () {
-            c()
-        }, 3000);
-        a.footerContent = b.getDate()
-    };
-    a.items = [
-        {title: "Msgs", count: 14, src: "ajax/notify/mail.html", onload: function (c) {
-            console.log(c);
-            alert("[Callback] Loading Messages ...")
-        }},
-        {title: "Notify", count: 3, src: "ajax/notify/notifications.html"},
-        {title: "Tasks", count: 4, src: "ajax/notify/tasks.html"}
-    ];
-    a.total = 0;
-    angular.forEach(a.items, function (c) {
-        a.total += c.count
-    });
-    a.footerContent = b.getDate()
-}]);

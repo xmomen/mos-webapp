@@ -84,14 +84,10 @@
                         <header>
                             登录
                         </header>
-                        <shiro:guest>
-                            欢迎游客访问，<a href="${pageContext.request.contextPath}/oauth2-login">点击登录</a><br/>
-                        </shiro:guest>
-                        <shiro:user>
-                            欢迎[<shiro:principal/>]登录<br/>
-                        </shiro:user>
                         <fieldset>
-                            <div class="error">${error}</div>
+                            <div class="error">
+                                ${error}
+                            </div>
                             <section>
                                 <label class="label">用户名</label>
                                 <label class="input"> <i class="icon-append fa fa-user"></i>
