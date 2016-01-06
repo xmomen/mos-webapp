@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" 
-xmlns:mvc="http://www.springframework.org/schema/mvc" 
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:mvc="http://www.springframework.org/schema/mvc"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xmlns:context="http://www.springframework.org/schema/context"
-xsi:schemaLocation="http://www.springframework.org/schema/beans 
+xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context-4.0.xsd
@@ -30,6 +30,9 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 		</property>
 	</bean>
 
+	<mvc:resources mapping="/views/src/**" location="/WEB-INF/views/src/"/>
+	<mvc:resources mapping="/src/**" location="/WEB-INF/views/src/"/>
+
 	<mvc:annotation-driven>
 		<mvc:message-converters>
 			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
@@ -46,9 +49,6 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 
 	<!-- Spring MVC 内容协商配置 -->
 	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
-		<!--<property name="favorParameter" value="true"/>-->
-		<!--<property name="useJaf" value="false"/>-->
-		<!--<property name="ignoreAcceptHeader" value="true"/>-->
         <property name="contentNegotiationManager">
             <bean class="org.springframework.web.accept.ContentNegotiationManager">
                 <constructor-arg>
@@ -70,6 +70,6 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
     </bean>
 
 	<!-- 异常统一处理 -->
-	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"/>
+	<bean id="exceptionHandlerExceptionResolver" class="org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver"/>
 
 </beans>
