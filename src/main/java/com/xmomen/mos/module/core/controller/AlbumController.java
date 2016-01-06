@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+
 
 @RestController
 public class AlbumController {
@@ -26,7 +28,10 @@ public class AlbumController {
 		if(false){
 			throw new NotFoundResourcesException("未找到需操作的资源");
 		}
-		return mybatisDao.selectPageByModel(new TEmployee(), 10, 1);
+		Page page = new Page(1,2);
+		page.add("11");
+		page.add("22");
+		return page;
 	}
 
 	@RequestMapping(value = "/user", method = RequestMethod.GET)

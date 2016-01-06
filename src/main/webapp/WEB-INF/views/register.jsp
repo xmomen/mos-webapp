@@ -80,7 +80,7 @@
 					<div class="">
 						<div class="well no-padding">
 
-							<form action="./src/php/demo-register.php" id="smart-form-register" class="smart-form client-form">
+							<form action="" method="post" id="smart-form-register" class="smart-form client-form">
 								<header>
 									注册
 								</header>
@@ -100,13 +100,13 @@
 
 									<section>
 										<label class="input"> <i class="icon-append fa fa-lock"></i>
-											<input type="password" name="password" placeholder="Password" id="password">
+											<input type="password" name="password" placeholder="密码" id="password">
 											<b class="tooltip tooltip-bottom-right">Don't forget your password</b> </label>
 									</section>
 
 									<section>
 										<label class="input"> <i class="icon-append fa fa-lock"></i>
-											<input type="password" name="passwordConfirm" placeholder="Confirm password">
+											<input type="password" name="passwordConfirm" placeholder="确认密码">
 											<b class="tooltip tooltip-bottom-right">Don't forget your password</b> </label>
 									</section>
 								</fieldset>
@@ -415,59 +415,50 @@ Contractology supply a wide variety of commercial legal documents, such as <a hr
 				$("#smart-form-register").validate({
 
 					// Rules for form validation
-					rules : {
-						username : {
-							required : true
-						},
-						email : {
-							required : true,
-							email : true
-						},
-						password : {
-							required : true,
-							minlength : 3,
-							maxlength : 20
-						},
-						passwordConfirm : {
-							required : true,
-							minlength : 3,
-							maxlength : 20,
-							equalTo : '#password'
-						},
-						terms : {
-							required : true
-						}
-					},
-
-					// Messages for form validation
-					messages : {
-						username : {
-							required : '请输入用户名'
-						},
-						email : {
-							required : '请输入邮箱',
-							email : '请输入有效格式的邮箱'
-						},
-						password : {
-							required : '请输入密码'
-						},
-						passwordConfirm : {
-							required : '请再次输入密码',
-							equalTo : '两次输入的密码不一致'
-						},
-						terms : {
-							required : '请勾选同意服务条款'
-						}
-					},
-
-					// Ajax form submition
-					submitHandler : function(form) {
-						$(form).ajaxSubmit({
-							success : function() {
-								$("#smart-form-register").addClass('submited');
-							}
-						});
-					},
+//					rules : {
+//						username : {
+//							required : true
+//						},
+//						email : {
+//							required : true,
+//							email : true
+//						},
+//						password : {
+//							required : true,
+//							minlength : 3,
+//							maxlength : 20
+//						},
+//						passwordConfirm : {
+//							required : true,
+//							minlength : 3,
+//							maxlength : 20,
+//							equalTo : '#password'
+//						},
+//						terms : {
+//							required : true
+//						}
+//					},
+//
+//					// Messages for form validation
+//					messages : {
+//						username : {
+//							required : '请输入用户名'
+//						},
+//						email : {
+//							required : '请输入邮箱',
+//							email : '请输入有效格式的邮箱'
+//						},
+//						password : {
+//							required : '请输入密码'
+//						},
+//						passwordConfirm : {
+//							required : '请再次输入密码',
+//							equalTo : '两次输入的密码不一致'
+//						},
+//						terms : {
+//							required : '请勾选同意服务条款'
+//						}
+//					},
 
 					// Do not change code below
 					errorPlacement : function(error, element) {

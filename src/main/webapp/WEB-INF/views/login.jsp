@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <!DOCTYPE html>
 <html lang="en-us" id="extr-page" data-ng-app="smartApp">
 <head>
@@ -83,13 +84,18 @@
                         <header>
                             登录
                         </header>
-
+                        <shiro:guest>
+                            欢迎游客访问，<a href="${pageContext.request.contextPath}/oauth2-login">点击登录</a><br/>
+                        </shiro:guest>
+                        <shiro:user>
+                            欢迎[<shiro:principal/>]登录<br/>
+                        </shiro:user>
                         <fieldset>
                             <div class="error">${error}</div>
                             <section>
                                 <label class="label">用户名</label>
                                 <label class="input"> <i class="icon-append fa fa-user"></i>
-                                    <input type="email" name="username">
+                                    <input type="text" name="username">
                                     <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> 请输入用户名</b></label>
                             </section>
 
@@ -179,8 +185,7 @@
             // Rules for form validation
             rules : {
                 username : {
-                    required : true,
-                    email : true
+                    required : true
                 },
                 password : {
                     required : true,
@@ -192,8 +197,7 @@
             // Messages for form validation
             messages : {
                 username : {
-                    required : '请输入用户名',
-                    email : '请输入正确的邮箱'
+                    required : '请输入用户名'
                 },
                 password : {
                     required : '请输入密码'

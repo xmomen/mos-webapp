@@ -33,7 +33,12 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 	<mvc:resources mapping="/views/src/**" location="/WEB-INF/views/src/"/>
 	<mvc:resources mapping="/src/**" location="/WEB-INF/views/src/"/>
 
-	<mvc:annotation-driven>
+	<!-- 以下 validator  ConversionService 在使用 mvc:annotation-driven 会 自动注册-->
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
+	</bean>
+
+	<mvc:annotation-driven validator="validator">
 		<mvc:message-converters>
 			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
 				 <property name="objectMapper" ref="jacksonObjectMapper"></property>
