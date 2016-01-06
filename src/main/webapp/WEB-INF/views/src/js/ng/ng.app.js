@@ -31,11 +31,9 @@ var smartApp = angular.module('smartApp', [
   	'ui.bootstrap',
   	'plunker',
   	'app.controllers',
-  	'app.demoControllers',
   	'app.main',
   	'app.navigation',
   	'app.localize',
-  	'app.activity',
   	'app.smartui'
 ]);
 
