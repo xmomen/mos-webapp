@@ -24,23 +24,26 @@
         </commentGenerator>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://192.168.8.200:3306/demo?useUnicode=true&amp;characterEncoding=UTF-8"
+                        connectionURL="jdbc:mysql://192.168.8.200:3306/mos_dev?useUnicode=true&amp;characterEncoding=UTF-8"
                         userId="dev" password="dev" />
 
         <javaTypeResolver type="com.xmomen.maven.plugins.mybatis.generator.plugins.types.JavaTypeResolverDefaultImplExt"></javaTypeResolver>
 
-        <javaModelGenerator targetPackage="com.xmomen.mos.module.core.entity"
+        <javaModelGenerator targetPackage="com.xmomen.mos.module.account.entity"
                             targetProject="./src/main/java" >
             <property name="rootClass" value="com.xmomen.framework.mybatis.model.BaseMybatisModel" />
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="com.xmomen.mos.module.core.entity.mapper"
+        <sqlMapGenerator targetPackage="com.xmomen.mos.module.account.entity.mapper"
                          targetProject="./src/main/resources" />
-        <javaClientGenerator targetPackage="com.xmomen.mos.module.core.entity.mapper"
+        <javaClientGenerator targetPackage="com.xmomen.mos.module.account.entity.mapper"
                              targetProject="./src/main/java" type="XMLMAPPER" >
         </javaClientGenerator>
-        <table tableName="t_department" />
-        <table tableName="t_employee" />
+        <table tableName="sys_users" />
+        <table tableName="sys_roles" />
+        <table tableName="sys_permissions" />
+        <table tableName="sys_users_roles" />
+        <table tableName="sys_roles_permissions" />
 
     </context>
 </generatorConfiguration>
