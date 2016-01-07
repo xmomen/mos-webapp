@@ -103,10 +103,10 @@
                 /register = anon
                 /logout = logout
                 /login = authc
-                /src/js/** = anon
-                /src/css/** = anon
-                /src/img/** = anon
-                /src/fonts/** = anon
+                /js/**  =  anon
+                /css/** =  anon
+                /img/** = anon
+                /fonts/** = anon
                 /admin/** = role[admin]
                 /demo = anon
                 /** = user

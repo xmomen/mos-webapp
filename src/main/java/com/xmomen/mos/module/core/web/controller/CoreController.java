@@ -24,7 +24,7 @@ public class CoreController {
 
     @RequestMapping(value = "/")
     public String index(){
-        return "redirect:/src/index.html";
+        return "redirect:/index.html";
     }
 
     @RequestMapping(value = "/login")

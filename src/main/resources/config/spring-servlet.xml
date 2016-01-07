@@ -31,7 +31,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 		</property>
 	</bean>
 
-	<mvc:resources mapping="/src/**" location="/WEB-INF/views/src/"/>
+	<mvc:resources mapping="/**" location="/WEB-INF/views/src/"/>
 
 	<!-- 以下 validator  ConversionService 在使用 mvc:annotation-driven 会 自动注册-->
 	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
