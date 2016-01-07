@@ -7,7 +7,13 @@
 define(function () {
     angular.module('MOS', [
         "smartApp", "ui.router"
-    ]).config(["$stateProvider", "$urlRouterProvider", function ($stateProvider, $urlRouterProvider) {
+    ]).controller("LeftPanelController",["$scope", "$rootScope", "$http", function($scope, $rootScope, $http){
+        $http.get("/account/setting").then(function(data){
+            if(data.data){
+                $rootScope.account = data.data;
+            }
+        })
+    }]).config(["$stateProvider", "$urlRouterProvider", function ($stateProvider, $urlRouterProvider) {
 
         $urlRouterProvider.otherwise('/blank');
 

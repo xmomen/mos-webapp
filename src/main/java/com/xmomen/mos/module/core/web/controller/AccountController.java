@@ -1,10 +1,8 @@
 package com.xmomen.mos.module.core.web.controller;
 
-import com.xmomen.framework.web.exceptions.NotFoundResourcesException;
 import com.xmomen.mos.module.core.web.controller.dto.AccountSettingDto;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
-import org.springframework.context.annotation.Role;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,22 +30,6 @@ public class AccountController {
         //roles.add(role);
         //accountSettingDto.setRoles(roles);
         return accountSettingDto;
-    }
-
-    @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public String user(){
-        if(true){
-            throw new NotFoundResourcesException();
-        }
-        return "user";
-    }
-
-    @RequestMapping(value = "/demo", method = RequestMethod.GET)
-    public String demo(){
-        if(true){
-            throw new NotFoundResourcesException();
-        }
-        return "demo";
     }
 
 }
