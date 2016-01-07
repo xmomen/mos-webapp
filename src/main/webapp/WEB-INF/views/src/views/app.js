@@ -13,6 +13,11 @@ define(function () {
                 $rootScope.account = data.data;
             }
         })
+    }]).run(["$rootScope", function($rootScope){
+        $rootScope.$on('$viewContentLoaded', function (event, next,  nextParams, fromState) {
+            // 初始化全局控件
+            pageSetUp();
+        });
     }]).config(["$stateProvider", "$urlRouterProvider", function ($stateProvider, $urlRouterProvider) {
 
         $urlRouterProvider.otherwise('/blank');
@@ -31,7 +36,15 @@ define(function () {
                 url: '/account/list',
                 templateUrl: 'views/account/list.html',
                 controller: ["$scope", function ($scope) {
-                    console.log("dashboard")
+                    console.log("account_list")
+                }]
+            })
+
+            .state('account_add', {
+                url: '/account/add',
+                templateUrl: 'views/account/add.html',
+                controller: ["$scope", "$http", function ($scope, $http) {
+
                 }]
             })
 
@@ -39,7 +52,7 @@ define(function () {
                 url: '/blank',
                 templateUrl: 'views/blank.html',
                 controller: ["$scope", function ($scope) {
-                    console.log("blank")
+                    console.log("blank");
                 }]
             })
 
