@@ -15,6 +15,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 	<!-- 扫描所有的controller 但是不扫描service-->
 	<context:component-scan base-package="com">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+		<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice" />
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />
 	</context:component-scan>
 
@@ -74,6 +75,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
     </bean>
 
 	<!-- 异常统一处理 -->
-	<bean id="exceptionHandlerExceptionResolver" class="org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver"/>
+	<bean id="exceptionHandlerExceptionResolver" class="org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver">
+	</bean>
 
 </beans>

@@ -74,7 +74,7 @@
     </bean>
 
     <!-- 基于Form表单的身份验证过滤器 -->
-    <bean id="formAuthenticationFilter" class="org.apache.shiro.web.filter.authc.FormAuthenticationFilter">
+    <bean id="formAuthenticationFilter" class="com.xmomen.mos.module.core.web.filter.FormAuthenticationFilterExt">
         <property name="usernameParam" value="username"/>
         <property name="passwordParam" value="password"/>
         <property name="loginUrl" value="/login"/>
@@ -84,14 +84,22 @@
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
         <property name="loginUrl" value="/login"/>
-        <property name="unauthorizedUrl" value="/unauthorized.jsp"/>
+        <property name="unauthorizedUrl" value="/unauthorized"/>
         <property name="filters">
             <util:map>
+                <entry key="role">
+                    <!--    用户角色过滤器    -->
+                    <bean class="org.apache.shiro.web.filter.authz.RolesAuthorizationFilter">
+                        <property name="unauthorizedUrl" value="/unauthorized"/>
+                        <property name="loginUrl" value="/login" />
+                    </bean>
+                </entry>
                 <entry key="authc" value-ref="formAuthenticationFilter"/>
             </util:map>
         </property>
         <property name="filterChainDefinitions">
             <value>
+                /unauthorized = anon
                 /register = anon
                 /logout = logout
                 /login = authc
@@ -99,6 +107,8 @@
                 /src/css/** = anon
                 /src/img/** = anon
                 /src/fonts/** = anon
+                /admin/** = role[admin]
+                /demo = anon
                 /** = user
             </value>
         </property>

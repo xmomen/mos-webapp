@@ -65,4 +65,11 @@ public class CoreController {
             }
         }
     }
+
+    @RequestMapping(value = "/admin/welcome")
+    public String admin(){
+       return "/admin/welcome";
+    }
+
+
 }
