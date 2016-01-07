@@ -27,6 +27,14 @@ define(function () {
                 }]
             })
 
+            .state('account_list', {
+                url: '/account/list',
+                templateUrl: 'views/account/list.html',
+                controller: ["$scope", function ($scope) {
+                    console.log("dashboard")
+                }]
+            })
+
             .state('blank', {
                 url: '/blank',
                 templateUrl: 'views/blank.html',

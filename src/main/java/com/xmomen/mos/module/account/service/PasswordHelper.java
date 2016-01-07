@@ -1,6 +1,6 @@
 package com.xmomen.mos.module.account.service;
 
-import com.xmomen.mos.module.account.entity.User;
+import com.xmomen.mos.module.account.entity.SysUsers;
 import org.apache.shiro.crypto.RandomNumberGenerator;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.SimpleHash;
@@ -29,16 +29,16 @@ public class PasswordHelper {
         this.hashIterations = hashIterations;
     }
 
-    public void encryptPassword(User user) {
+    public String getSalt(){
+        return randomNumberGenerator.nextBytes().toHex();
+    }
 
-        user.setSalt(randomNumberGenerator.nextBytes().toHex());
-
-        String newPassword = new SimpleHash(
+    public String encryptPassword(String password, String username, String salt) {
+        return new SimpleHash(
                 algorithmName,
-                user.getPassword(),
-                ByteSource.Util.bytes(user.getCredentialsSalt()),
+                password,
+                ByteSource.Util.bytes(username + salt),
                 hashIterations).toHex();
 
-        user.setPassword(newPassword);
     }
 }

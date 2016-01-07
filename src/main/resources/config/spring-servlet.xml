@@ -78,4 +78,24 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 	<bean id="exceptionHandlerExceptionResolver" class="org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver">
 	</bean>
 
+	<!--<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">-->
+		<!--<property name="exceptionMappings">-->
+			<!--<props>-->
+				<!--<prop key="java.lang.Exception">errors/error</prop>-->
+				<!--<prop key="java.lang.Throwable">errors/err</prop>-->
+			<!--</props>-->
+		<!--</property>-->
+		<!--<property name="statusCodes">-->
+			<!--<props>-->
+				<!--<prop key="errors/error">500</prop>-->
+				<!--<prop key="errors/404">404</prop>-->
+			<!--</props>-->
+		<!--</property>-->
+		<!--&lt;!&ndash; 默认错误页面，当找不到上面mappings中指定的异常对应视图时，使用本默认配置 &ndash;&gt;-->
+		<!--<property name="defaultErrorView" value="errors/error"></property>-->
+		<!--&lt;!&ndash; 默认HTTP状态码 &ndash;&gt;-->
+		<!--<property name="defaultStatusCode" value="500"></property>-->
+	<!--</bean>-->
+	<!-- 全局异常配置 end -->
+
 </beans>

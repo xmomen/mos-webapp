@@ -1,22 +1,23 @@
 package com.xmomen.mos.module.account.service;
 
-import com.xmomen.mos.module.account.dao.UserDao;
+import com.xmomen.framework.mybatis.dao.MybatisDao;
+import com.xmomen.mos.module.account.entity.SysUsers;
 import com.xmomen.mos.module.account.entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
+import java.util.UUID;
 
 /**
  * <p>User: Zhang Kaitao
  * <p>Date: 14-1-28
  * <p>Version: 1.0
  */
+@Service
 public class UserServiceImpl implements UserService {
 
-    private UserDao userDao;
-
-    public void setUserDao(UserDao userDao) {
-        this.userDao = userDao;
-    }
 
     private PasswordHelper passwordHelper;
 
@@ -24,14 +25,25 @@ public class UserServiceImpl implements UserService {
         this.passwordHelper = passwordHelper;
     }
 
+    @Autowired
+    MybatisDao mybatisDao;
+
     /**
      * 创建用户
      * @param user
      */
-    public User createUser(User user) {
+    @Transactional
+    public SysUsers createUser(User user) {
         //加密密码
-        passwordHelper.encryptPassword(user);
-        return userDao.createUser(user);
+        String salt = passwordHelper.getSalt();
+        String newPassword = passwordHelper.encryptPassword(user.getPassword(), user.getUsername(), salt);
+        SysUsers sysUsers = new SysUsers();
+        sysUsers.setSalt(UUID.randomUUID().toString().toUpperCase());
+        sysUsers.setUsername(user.getUsername());
+        sysUsers.setSalt(salt);
+        sysUsers.setPassword(newPassword);
+        sysUsers.setLocked(user.getLocked() ? 1 : 0);
+        return mybatisDao.saveByModel(sysUsers);
     }
 
     /**
@@ -39,11 +51,14 @@ public class UserServiceImpl implements UserService {
      * @param userId
      * @param newPassword
      */
+    @Transactional
     public void changePassword(Long userId, String newPassword) {
-        User user =userDao.findOne(userId);
+        SysUsers user = mybatisDao.selectByPrimaryKey(SysUsers.class, userId);
+        String salt = passwordHelper.getSalt();
         user.setPassword(newPassword);
-        passwordHelper.encryptPassword(user);
-        userDao.updateUser(user);
+        user.setSalt(salt);
+        passwordHelper.encryptPassword(user.getPassword(), user.getUsername(), salt);
+        mybatisDao.update(user);
     }
 
     /**
@@ -52,7 +67,6 @@ public class UserServiceImpl implements UserService {
      * @param roleIds
      */
     public void correlationRoles(Long userId, Long... roleIds) {
-        userDao.correlationRoles(userId, roleIds);
     }
 
 
@@ -62,7 +76,6 @@ public class UserServiceImpl implements UserService {
      * @param roleIds
      */
     public void uncorrelationRoles(Long userId, Long... roleIds) {
-        userDao.uncorrelationRoles(userId, roleIds);
     }
 
     /**
@@ -70,8 +83,10 @@ public class UserServiceImpl implements UserService {
      * @param username
      * @return
      */
-    public User findByUsername(String username) {
-        return userDao.findByUsername(username);
+    public SysUsers findByUsername(String username) {
+        SysUsers sysUsers = new SysUsers();
+        sysUsers.setUsername(username);
+        return mybatisDao.selectOneByModel(sysUsers);
     }
 
     /**
@@ -80,7 +95,7 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     public Set<String> findRoles(String username) {
-        return userDao.findRoles(username);
+        return null;
     }
 
     /**
@@ -89,7 +104,7 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     public Set<String> findPermissions(String username) {
-        return userDao.findPermissions(username);
+        return null;
     }
 
 }

@@ -99,8 +99,10 @@
         </property>
         <property name="filterChainDefinitions">
             <value>
+                /errors/** = anon
                 /unauthorized = anon
                 /register = anon
+                /register.do = anon
                 /logout = logout
                 /login = authc
                 /js/**  =  anon

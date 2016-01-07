@@ -28,7 +28,6 @@
     </bean>
 
     <bean id="userService" class="com.xmomen.mos.module.account.service.UserServiceImpl">
-        <property name="userDao" ref="userDao"/>
         <property name="passwordHelper" ref="passwordHelper"/>
     </bean>
 

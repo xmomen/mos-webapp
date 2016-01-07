@@ -12,12 +12,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 		<!-- Basic Styles -->
-		<link rel="stylesheet" type="text/css" media="screen" href="./src/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" media="screen" href="./src/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" media="screen" href="./css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" media="screen" href="./css/font-awesome.min.css">
 
 		<!-- SmartAdmin Styles : Please note (smartadmin-production.css) was created using LESS variables -->
-		<link rel="stylesheet" type="text/css" media="screen" href="./src/css/smartadmin-production.min.css">
-		<link rel="stylesheet" type="text/css" media="screen" href="./src/css/smartadmin-skins.min.css">
+		<link rel="stylesheet" type="text/css" media="screen" href="./css/smartadmin-production.min.css">
+		<link rel="stylesheet" type="text/css" media="screen" href="./css/smartadmin-skins.min.css">
 
 		<!-- SmartAdmin RTL Support is under construction
              This RTL CSS will be released in version 1.5
@@ -28,33 +28,33 @@
         <link rel="stylesheet" type="text/css" media="screen" href="css/your_style.css"> -->
 
 		<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
-		<link rel="stylesheet" type="text/css" media="screen" href="./src/css/demo.min.css">
+		<link rel="stylesheet" type="text/css" media="screen" href="./css/demo.min.css">
 
 		<!-- Angular Related CSS -->
-		<link rel="stylesheet" type="text/css" media="screen" href="./src/css/ng.min.css">
+		<link rel="stylesheet" type="text/css" media="screen" href="./css/ng.min.css">
 
 		<!-- FAVICONS -->
-		<link rel="shortcut icon" href="./src/img/favicon/favicon.ico" type="image/x-icon">
-		<link rel="icon" href="./src/img/favicon/favicon.ico" type="image/x-icon">
+		<link rel="shortcut icon" href="./img/favicon/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="./img/favicon/favicon.ico" type="image/x-icon">
 
 		<!-- GOOGLE FONT -->
 		<!--<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">-->
 
 		<!-- Specifying a Webpage Icon for Web Clip
              Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
-		<link rel="apple-touch-icon" href="./src/img/splash/sptouch-icon-iphone.png">
-		<link rel="apple-touch-icon" sizes="76x76" href="./src/img/splash/touch-icon-ipad.png">
-		<link rel="apple-touch-icon" sizes="120x120" href="./src/img/splash/touch-icon-iphone-retina.png">
-		<link rel="apple-touch-icon" sizes="152x152" href="./src/img/splash/touch-icon-ipad-retina.png">
+		<link rel="apple-touch-icon" href="./img/splash/sptouch-icon-iphone.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="./img/splash/touch-icon-ipad.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="./img/splash/touch-icon-iphone-retina.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="./img/splash/touch-icon-ipad-retina.png">
 
 		<!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 		<!-- Startup image for web apps -->
-		<link rel="apple-touch-startup-image" href="./src/img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
-		<link rel="apple-touch-startup-image" href="./src/img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-		<link rel="apple-touch-startup-image" href="./src/img/splash/iphone.png" media="screen and (max-device-width: 320px)">
+		<link rel="apple-touch-startup-image" href="./img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+		<link rel="apple-touch-startup-image" href="./img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+		<link rel="apple-touch-startup-image" href="./img/splash/iphone.png" media="screen and (max-device-width: 320px)">
 
 	</head>
 	<body id="animated fadeInDown">
@@ -63,7 +63,7 @@
 			<!--<span id="logo"></span>-->
 
 			<div id="logo-group">
-				<span id="logo"> <img src="./src/img/logo.png" alt="后台管理系统"> </span>
+				<span id="logo"> <img src="./img/logo.png" alt="后台管理系统"> </span>
 
 				<!-- END AJAX-DROPDOWN -->
 			</div>
@@ -80,11 +80,13 @@
 					<div class="">
 						<div class="well no-padding">
 
-							<form action="" method="post" id="smart-form-register" class="smart-form client-form">
+							<form action="/register.do" method="post" id="smart-form-register" class="smart-form client-form">
 								<header>
 									注册
 								</header>
-
+								<div class="error">
+									${error}
+								</div>
 								<fieldset>
 									<section>
 										<label class="input"> <i class="icon-append fa fa-user"></i>
@@ -92,11 +94,11 @@
 											<b class="tooltip tooltip-bottom-right">Needed to enter the website</b> </label>
 									</section>
 
-									<section>
-										<label class="input"> <i class="icon-append fa fa-envelope"></i>
-											<input type="email" name="email" placeholder="邮箱">
-											<b class="tooltip tooltip-bottom-right">Needed to verify your account</b> </label>
-									</section>
+									<%--<section>--%>
+										<%--<label class="input"> <i class="icon-append fa fa-envelope"></i>--%>
+											<%--<input type="email" name="email" placeholder="邮箱">--%>
+											<%--<b class="tooltip tooltip-bottom-right">Needed to verify your account</b> </label>--%>
+									<%--</section>--%>
 
 									<section>
 										<label class="input"> <i class="icon-append fa fa-lock"></i>
@@ -366,25 +368,25 @@ Contractology supply a wide variety of commercial legal documents, such as <a hr
 
 	    <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
 	    <%--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>--%>
-		<script> if (!window.jQuery) { document.write('<script src="./src/js/libs/jquery-2.0.2.min.js"><\/script>');} </script>
+		<script> if (!window.jQuery) { document.write('<script src="./js/libs/jquery-2.0.2.min.js"><\/script>');} </script>
 
 	    <%--<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>--%>
-		<script> if (!window.jQuery.ui) { document.write('<script src="./src/js/libs/jquery-ui-1.10.3.min.js"><\/script>');} </script>
+		<script> if (!window.jQuery.ui) { document.write('<script src="./js/libs/jquery-ui-1.10.3.min.js"><\/script>');} </script>
 
 		<!-- JS TOUCH : include this plugin for mobile drag / drop touch events 		
 		<script src="js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script> -->
 
 		<!-- BOOTSTRAP JS -->		
-		<script src="./src/js/bootstrap/bootstrap.min.js"></script>
+		<script src="./js/bootstrap/bootstrap.min.js"></script>
 
 		<!-- CUSTOM NOTIFICATION -->
-		<script src="./src/js/notification/SmartNotification.min.js"></script>
+		<script src="./js/notification/SmartNotification.min.js"></script>
 
 		<!-- JARVIS WIDGETS -->
-		<script src="./src/js/smartwidgets/jarvis.widget.min.js"></script>
+		<script src="./js/smartwidgets/jarvis.widget.min.js"></script>
 
 		<!-- JQUERY VALIDATE -->
-		<script src="./src/js/plugin/jquery-validate/jquery.validate.min.js"></script>
+		<script src="./js/plugin/jquery-validate/jquery.validate.min.js"></script>
 		
 		<!--[if IE 7]>
 			
@@ -393,7 +395,7 @@ Contractology supply a wide variety of commercial legal documents, such as <a hr
 		<![endif]-->
 		
 		<!-- MAIN APP JS FILE -->
-		<script src="./src/js/app.min.js"></script>
+		<script src="./js/app.min.js"></script>
 
 		<script type="text/javascript">
 			runAllForms();
@@ -415,50 +417,50 @@ Contractology supply a wide variety of commercial legal documents, such as <a hr
 				$("#smart-form-register").validate({
 
 					// Rules for form validation
-//					rules : {
-//						username : {
-//							required : true
-//						},
+					rules : {
+						username : {
+							required : true
+						},
 //						email : {
 //							required : true,
 //							email : true
 //						},
-//						password : {
-//							required : true,
-//							minlength : 3,
-//							maxlength : 20
-//						},
-//						passwordConfirm : {
-//							required : true,
-//							minlength : 3,
-//							maxlength : 20,
-//							equalTo : '#password'
-//						},
-//						terms : {
-//							required : true
-//						}
-//					},
-//
-//					// Messages for form validation
-//					messages : {
-//						username : {
-//							required : '请输入用户名'
-//						},
+						password : {
+							required : true,
+							minlength : 3,
+							maxlength : 20
+						},
+						passwordConfirm : {
+							required : true,
+							minlength : 3,
+							maxlength : 20,
+							equalTo : '#password'
+						},
+						terms : {
+							required : true
+						}
+					},
+
+					// Messages for form validation
+					messages : {
+						username : {
+							required : '请输入用户名'
+						},
 //						email : {
 //							required : '请输入邮箱',
 //							email : '请输入有效格式的邮箱'
 //						},
-//						password : {
-//							required : '请输入密码'
-//						},
-//						passwordConfirm : {
-//							required : '请再次输入密码',
-//							equalTo : '两次输入的密码不一致'
-//						},
-//						terms : {
-//							required : '请勾选同意服务条款'
-//						}
-//					},
+						password : {
+							required : '请输入密码'
+						},
+						passwordConfirm : {
+							required : '请再次输入密码',
+							equalTo : '两次输入的密码不一致'
+						},
+						terms : {
+							required : '请勾选同意服务条款'
+						}
+					},
 
 					// Do not change code below
 					errorPlacement : function(error, element) {

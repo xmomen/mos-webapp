@@ -1,11 +1,16 @@
 package com.xmomen.mos.module.core.web.controller;
 
+import com.xmomen.framework.web.exceptions.ArgumentValidException;
+import com.xmomen.mos.module.account.entity.SysUsers;
 import com.xmomen.mos.module.account.entity.User;
 import com.xmomen.mos.module.account.service.UserService;
 import com.xmomen.mos.module.core.web.controller.dto.RegisterDto;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.web.util.WebUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,13 +19,14 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.UUID;
 
 /**
  * Created by Jeng on 2016/1/5.
  */
 @Controller
 public class CoreController {
+
+    private static Logger logger = LoggerFactory.getLogger(CoreController.class);
 
     @RequestMapping(value = "/")
     public String index(){
@@ -49,27 +55,29 @@ public class CoreController {
     UserService userService;
 
     @RequestMapping(value = "/register")
-    public String register(@ModelAttribute @Valid RegisterDto registerDto, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
+    public String register(@ModelAttribute @Valid RegisterDto registerDto,
+                           BindingResult bindingResult,
+                           HttpServletRequest request,
+                           Model model) {
+        if (!WebUtils.toHttp(request).getMethod().equalsIgnoreCase("POST")){
             return "register";
-        }else{
+        }
+        if(!bindingResult.hasErrors()){
             User user = new User();
             user.setUsername(registerDto.getUsername());
             user.setPassword(registerDto.getPassword());
-            user.setSalt(UUID.randomUUID().toString().toUpperCase());
-            user = userService.createUser(user);
-            if(user.getId() != null && user.getId() > 0 ){
+            SysUsers sysUsers = userService.createUser(user);
+            if(sysUsers.getId() != null && sysUsers.getId() > 0 ){
                 return "login";
             }else{
+                logger.error("注册成功后返回的主键为空（或主键等于或小于0）");
+                model.addAttribute("error", "注册用户失败");
                 return "register";
             }
+        }else{
+            model.addAttribute("error", bindingResult.getFieldError().getDefaultMessage());
+            return "register";
         }
     }
-
-    @RequestMapping(value = "/admin/welcome")
-    public String admin(){
-       return "/admin/welcome";
-    }
-
 
 }

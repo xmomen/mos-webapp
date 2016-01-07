@@ -678,7 +678,7 @@ angular.module('app.navigation', [])
 			controller: 'NavItemController',
 			scope: {
 				title: '@',
-				view: '@',
+				uiSref: '@',
 				icon: '@',
 				iconCaption: '@',
 				href: '@',
@@ -697,8 +697,7 @@ angular.module('app.navigation', [])
 						if (angular.isDefined(navgroupCtrl)) navgroupCtrl.setActive(false);
 					}
 				});
-
-				scope.openParents = scope.isActive(scope.view);
+				scope.openParents = scope.isActive(scope.uiSref);
 				scope.isChild = angular.isDefined(navgroupCtrl);
 				
 				scope.setBreadcrumb = function() {
@@ -731,7 +730,7 @@ angular.module('app.navigation', [])
 			replace: true,
 			template: '\
 				<li ui-sref-active="active">\
-					<a ui-sref="{{ getItemUrl(view) }}"  title="{{ title }}">\
+					<a ui-sref="{{ getItemUrl(uiSref) }}"  title="{{ title }}">\
 						<i data-ng-if="hasIcon" class="{{ icon }}"><em data-ng-if="hasIconCaption"> {{ iconCaption }} </em></i>\
 						<span ng-class="{\'menu-item-parent\': !isChild}" data-localize="{{ title }}"> {{ title }} </span>\
 						<span data-ng-transclude=""></span>\

@@ -1,5 +1,6 @@
 package com.xmomen.mos.module.account.realm;
 
+import com.xmomen.mos.module.account.entity.SysUsers;
 import com.xmomen.mos.module.account.entity.User;
 import com.xmomen.mos.module.account.service.UserService;
 import org.apache.shiro.authc.*;
@@ -38,7 +39,7 @@ public class UserRealm extends AuthorizingRealm {
 
         String username = (String)token.getPrincipal();
 
-        User user = userService.findByUsername(username);
+        SysUsers user = userService.findByUsername(username);
 
         if(user == null) {
             throw new UnknownAccountException();//没找到帐号
@@ -52,7 +53,7 @@ public class UserRealm extends AuthorizingRealm {
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
                 user.getUsername(), //用户名
                 user.getPassword(), //密码
-                ByteSource.Util.bytes(user.getCredentialsSalt()),//salt=username+salt
+                ByteSource.Util.bytes(user.getUsername() + user.getSalt()),//salt=username+salt
                 getName()  //realm name
         );
         return authenticationInfo;

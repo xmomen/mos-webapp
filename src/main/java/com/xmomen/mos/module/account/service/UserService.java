@@ -1,5 +1,6 @@
 package com.xmomen.mos.module.account.service;
 
+import com.xmomen.mos.module.account.entity.SysUsers;
 import com.xmomen.mos.module.account.entity.User;
 
 import java.util.Set;
@@ -15,7 +16,7 @@ public interface UserService {
      * 创建用户
      * @param user
      */
-    public User createUser(User user);
+    public SysUsers createUser(User user);
 
     /**
      * 修改密码
@@ -44,7 +45,7 @@ public interface UserService {
      * @param username
      * @return
      */
-    public User findByUsername(String username);
+    public SysUsers findByUsername(String username);
 
     /**
      * 根据用户名查找其角色
