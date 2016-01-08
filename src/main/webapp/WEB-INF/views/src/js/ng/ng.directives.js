@@ -634,7 +634,7 @@ angular.module('app.navigation', [])
 				active: '=?'
 			},
 			template: '\
-				<li data-ng-class="{active: active}">\
+				<li data-ng-class="{active: active}" >\
 					<a href="">\
 						<i data-ng-if="hasIcon" class="{{ icon }}"><em data-ng-if="hasIconCaption"> {{ iconCaption }} </em></i>\
 						<span class="menu-item-parent" data-localize="{{ title }}">{{ title }}</span>\
@@ -649,12 +649,8 @@ angular.module('app.navigation', [])
 		$scope.isChild = false;
 		$scope.active = false;
 		$scope.isActive = function (viewLocation) {
-			if($state.includes(viewLocation)){
-				$scope.active = true;
-			}else{
-				$scope.active = false;
-			}
-	        return $scope.active;
+			$scope.active = viewLocation === "#" + $location.path();
+			return $scope.active;
 	    };
 
 	    $scope.hasIcon = angular.isDefined($scope.icon);
@@ -697,7 +693,7 @@ angular.module('app.navigation', [])
 						if (angular.isDefined(navgroupCtrl)) navgroupCtrl.setActive(false);
 					}
 				});
-				scope.openParents = scope.isActive(scope.uiSref);
+				scope.openParents = scope.isActive(scope.href);
 				scope.isChild = angular.isDefined(navgroupCtrl);
 				
 				scope.setBreadcrumb = function() {

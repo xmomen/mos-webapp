@@ -24,28 +24,28 @@
                     <!-- widget content -->
                     <div class="widget-body">
 
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" name="addUserForm" ug-validator="addAccountForm" novalidate="">
 
                             <fieldset>
                                 <legend>添加新用户</legend>
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">用户名</label>
                                     <div class="col-md-10">
-                                        <input class="form-control" name="username" placeholder="用户名" type="text">
+                                        <input class="form-control" required="" ng-model="User.username" name="username" placeholder="用户名" type="text">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">密码</label>
                                     <div class="col-md-10">
-                                        <input class="form-control" name="password" placeholder="密码" type="password" >
+                                        <input class="form-control" required="" ng-model="User.password" name="password" placeholder="密码" type="password" >
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">确认密码</label>
                                     <div class="col-md-10">
-                                        <input class="form-control" name="comfirmPassword" placeholder="确认密码" type="password">
+                                        <input class="form-control" ug-equal-to="password" ng-model="User.confirmPassword" name="confirmPassword" placeholder="确认密码" type="password">
                                     </div>
                                 </div>
 
@@ -54,7 +54,7 @@
                                     <div class="col-md-10">
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox" class="checkbox style-0" checked="checked">
+                                                <!--<input type="checkbox" ng-model="User.locked" class="checkbox style-0" name="locked" checked="checked">-->
                                                 <span>激活用户</span>
                                             </label>
                                         </div>
@@ -64,10 +64,7 @@
                             <div class="form-actions">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <button class="btn btn-default" type="submit">
-                                            取消
-                                        </button>
-                                        <button class="btn btn-primary" type="submit">
+                                        <button class="btn btn-primary" type="button" data-ng-click="addAccount()">
                                             <i class="fa fa-save"></i>
                                             提交
                                         </button>

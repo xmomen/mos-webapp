@@ -4,9 +4,11 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-define(function () {
+define([
+    "views/account/add"
+],function (addAccount) {
     angular.module('MOS', [
-        "smartApp", "ui.router"
+        "smartApp", "ui.router", "ug.validation"
     ]).controller("LeftPanelController",["$scope", "$rootScope", "$http", function($scope, $rootScope, $http){
         $http.get("/account/setting").then(function(data){
             if(data.data){
@@ -43,9 +45,7 @@ define(function () {
             .state('account_add', {
                 url: '/account/add',
                 templateUrl: 'views/account/add.html',
-                controller: ["$scope", "$http", function ($scope, $http) {
-
-                }]
+                controller: addAccount
             })
 
             .state('blank', {

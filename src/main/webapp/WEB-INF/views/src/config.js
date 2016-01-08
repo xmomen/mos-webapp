@@ -5,6 +5,12 @@
 
 require.config({
     paths:{
-        ngApp:"views/app"
+        ngApp:"views/app",
+        ugValidation:"js/ug-ui/ug-validation"
+    },
+    shim:{
+        ngApp:{
+            deps:["ugValidation"]
+        }
     }
 });
