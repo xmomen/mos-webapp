@@ -12,7 +12,6 @@
     <properties>
         <spring.boot.version>1.2.1.RELEASE</spring.boot.version>
         <spring.hateaos.version>0.16.0.RELEASE</spring.hateaos.version>
-        <start-class>com.xmomen.mos.module.core.Application</start-class>
     </properties>
     <build>
         <finalName>mos-webapp</finalName>
@@ -109,6 +108,12 @@
             <groupId>com.xmomen.framework</groupId>
             <artifactId>easy-mybatis</artifactId>
             <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.hateoas</groupId>
+            <artifactId>spring-hateoas</artifactId>
+            <version>0.16.0.RELEASE</version>
         </dependency>
 
         <dependency>
